@@ -39,7 +39,8 @@ h2 {
 
 .comment {
     border: solid black;
-    margin: 1em;
+    margin: 1em 0 1em 0;
+    list-style: none;
 }
 
 .comments {
