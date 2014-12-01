@@ -58,3 +58,8 @@ h2 {
 .glyphicon-remove:hover {
     background-color: darkgray;
 }
+
+.commentTitle {
+    font-weight: bold;
+    font-size: 15px;
+}
