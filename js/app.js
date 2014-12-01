@@ -90,5 +90,4 @@ angular.module('ReviewApp', ['ui.bootstrap'])
                     $scope.loading = false;
                 });
         }; // end delete comment method
-
     });

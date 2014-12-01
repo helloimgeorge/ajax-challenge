@@ -1,86 +1,92 @@
 <!doctype html>
+
 <html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Product Comments</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/main.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Product Comments</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/main.css">
+    </head>
 
-<body>
-<main class="container" ng-app="ReviewApp" ng-controller="ReviewsController">
-    <section>
-        <img src="img/super-bass-o-matic-76.jpg" alt="product picture" class="product-picture">
-        <h1>The Super Bass-o-Matic '76</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia cumque deserunt ullam repudiandae nisi corporis! Ipsum, ducimus commodi, itaque porro distinctio consequuntur! Autem doloremque numquam nemo ex nulla tempora quis! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde nihil doloribus excepturi quisquam error possimus veritatis facere, commodi cumque ab atque dolore ducimus obcaecati ipsa, impedit! Consequuntur, eligendi iure cumque!</p>
-    </section>
+    <body>
+        <main class="container" ng-app="ReviewApp" ng-controller="ReviewsController">
+            <section>
+                <img src="img/super-bass-o-matic-76.jpg" alt="product picture" class="product-picture">
+                <h1>The Super Bass-o-Matic '76</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia cumque deserunt ullam repudiandae
+                    nisi corporis! Ipsum, ducimus commodi, itaque porro distinctio consequuntur! Autem doloremque
+                    numquam nemo ex nulla tempora quis! Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Unde nihil doloribus excepturi quisquam error possimus veritatis facere, commodi cumque ab atque
+                    dolore ducimus obcaecati ipsa, impedit! Consequuntur, eligendi iure cumque!</p>
+            </section>
 
-    <h2>Add a Comment</h2>
-    <section class="review-box">
+            <h2>Add a Comment</h2>
 
-        <form ng-submit="addComment()" class="comment-information">
+            <section class="review-box">
 
-            <div class="form-group">
-                <label for="task-name">Name:</label>
-                <input type="text" id="task-name" class="form-control"
-                       placeholder="Your Name Here" ng-model="newComment.name"/>
-            </div>
+                <form ng-submit="addComment()" class="comment-information">
 
-            <div class="form-group">
-                <label for="task-title">Title:</label>
-                <input type="text" id="task-title" class="form-control"
-                       placeholder="Title of Comment" ng-model="newComment.title"/>
-            </div>
+                    <div class="form-group">
+                        <label for="task-name">Name:</label>
+                        <input type="text" id="task-name" class="form-control"
+                               placeholder="Your Name Here" ng-model="newComment.name"/>
+                    </div>
 
-            <div class="form-group">
-                <label for="task-body">Comment:</label>
-                <textarea name="form-control" id="task-body" cols="30" rows="3" class="form-control"
-                          placeholder="Comment..." ng-model="newComment.body"></textarea>
-            </div>
+                    <div class="form-group">
+                        <label for="task-title">Title:</label>
+                        <input type="text" id="task-title" class="form-control"
+                               placeholder="Title of Comment" ng-model="newComment.title"/>
+                    </div>
 
-            <div class="form-group">
-                <label>Rating: </label>
-                <rating name="rating" max="5" ng-model="newComment.rating"></rating>
-            </div>
+                    <div class="form-group">
+                        <label for="task-body">Comment:</label>
+                        <textarea name="form-control" id="task-body" cols="30" rows="3" class="form-control"
+                                  placeholder="Comment..." ng-model="newComment.body"></textarea>
+                    </div>
 
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary submit-button" ng-disabled="inserting">Submit</button>
-                <img src="img/ajax-spinner.gif" alt="loading" ng-if="loading"/>
-            </div>
-        </form>
-    </section>
+                    <div class="form-group">
+                        <label>Rating: </label>
+                        <rating name="rating" max="5" ng-model="newComment.rating"></rating>
+                    </div>
 
-    <section class="reviews">
-        <h2>User Comments</h2>
-        <ul class="comments">
-            <li class="comment" ng-repeat="comment in comments">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit-button" ng-disabled="inserting">Submit</button>
+                        <img src="img/ajax-spinner.gif" alt="loading" ng-if="loading"/>
+                    </div>
+                </form>
+            </section>
 
-                <div class="remove">
-                    <span class="glyphicon glyphicon-remove" ng-click="deleteComment(comment)"></span>
-                </div>
+            <section class="reviews">
+                <h2>User Comments</h2>
+                <ul class="comments">
+                    <li class="comment" ng-repeat="comment in comments">
 
-                <div class="rating">
-                    <rating name="rating" max="5" ng-model="comment.rating" readonly="true"></rating>
-                </div>
+                        <div class="remove">
+                            <span class="glyphicon glyphicon-remove" ng-click="deleteComment(comment)"></span>
+                        </div>
 
-                <span class="commentTitle">{{comment.title}}</span> <!--TODO how do you bold it, below gray -->
-                <p class="name">By: {{comment.name}} on {{comment.createdAt | date:"longDate"}} </p>
-                <p class="commentBody">{{comment.body}}</p>
+                        <div class="rating">
+                            <rating name="rating" max="5" ng-model="comment.rating" readonly="true"></rating>
+                        </div>
 
-                <div class="score">
-                    {{comment.score}}
-                    <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementScore(comment, 1)"></span>
-                    <span class="glyphicon glyphicon-thumbs-down" ng-if="comment.score > 0" ng-click="incrementScore(comment, -1)"></span>
-                </div>
-            </li>
-        </ul>
-    </section>
-</main>
+                        <span class="commentTitle">{{comment.title}}</span> <!--TODO how do you bold it, below gray -->
+                        <p class="name">By: {{comment.name}} on {{comment.createdAt | date:"longDate"}} </p>
+                        <p class="commentBody">{{comment.body}}</p>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.2/angular.min.js"></script>
-<script src="lib/ui-bootstrap-tpls-0.11.0.min.js"></script>
-<script src="js/app.js"></script>
-</body>
+                        <div class="score">
+                            {{comment.score}}
+                            <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementScore(comment, 1)"></span>
+                            <span class="glyphicon glyphicon-thumbs-down" ng-if="comment.score > 0" ng-click="incrementScore(comment, -1)"></span>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+        </main>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.2/angular.min.js"></script>
+        <script src="lib/ui-bootstrap-tpls-0.11.0.min.js"></script>
+        <script src="js/app.js"></script>
+    </body>
 </html>
