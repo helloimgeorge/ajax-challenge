@@ -55,6 +55,6 @@ h2 {
     margin-bottom: 5px;
 }
 
-.glyphicon:hover {
-    background-color: blanchedalmond;
+.glyphicon-remove:hover {
+    background-color: darkgray;
 }
