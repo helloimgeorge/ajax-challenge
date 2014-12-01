@@ -11,3 +11,49 @@ body {
     margin-right: 10px;
 }
 
+h2 {
+    margin-top: 40px;
+}
+
+.review-box {
+    border: solid black;
+}
+
+.comment-information {
+    padding: 15px 15px 0 15px;
+}
+
+.body {
+    vertical-align: 500px;
+}
+
+.rating {
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.remove {
+    float: right;
+    margin-right: 5px;
+}
+
+.comment {
+    border: solid black;
+    margin: 1em;
+}
+
+.comments {
+    padding: 0em;
+}
+
+.remove, .rating, .name, .commentBody, .score {
+    margin-left: 10px;
+}
+
+.score {
+    margin-bottom: 5px;
+}
+
+.glyphicon:hover {
+    background-color: blanchedalmond;
+}
