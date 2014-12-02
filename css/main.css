@@ -59,6 +59,7 @@ h2 {
     background-color: darkgray;
 }
 
-.no-comments {
-    display: visible;
+.commentTitle {
+    font-weight: bold;
+    font-size: 15px;
 }
