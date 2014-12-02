@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Product Comments</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <link rel="stylesheet" href="css/main.css">
     </head>
 
@@ -60,8 +61,8 @@
             <section class="reviews">
                 <h2>User Comments</h2>
                 <ul class="comments">
+                    <p id="firstComment">No comments yet, be the first to review it!</p>
                     <li class="comment" ng-repeat="comment in comments">
-
                         <div class="remove">
                             <span class="glyphicon glyphicon-remove" ng-click="deleteComment(comment)"></span>
                         </div>

@@ -14,23 +14,35 @@ angular.module('ReviewApp', ['ui.bootstrap'])
         $scope.errorMessage = null;
 
         // retrieves all comments and sorts them
-        $scope.getComments = function() {
-            $scope.loading = true;
+            $scope.getComments = function () {
+                $scope.loading = true;
 
-            $http.get(commentUrl)
-                .success(function(data) {
-                    $scope.comments = _.sortBy(data.results, 'score').reverse();
-                })
-                .error(function(err) {
-                    $scope.errorMessage = err;
-                })
-                .finally(function() {
-                    $scope.loading = false;
-                });
+                $http.get(commentUrl)
+                    .success(function (data) {
+                        $scope.comments = _.sortBy(data.results, 'score').reverse();
+                        console.log($scope.comments.length);
+                        $scope.commentCheck();
+                    })
+                    .error(function (err) {
+                        $scope.errorMessage = err;
+                    })
+                    .finally(function () {
+                        $scope.loading = false;
+                    });
 
-        }; // end getComments method
+            }; // end getComments method
 
         $scope.getComments();
+
+        // checks to see if there are any comments
+        $scope.commentCheck = function () {
+            if ($scope.comments.length > 0) {
+                $('#firstComment').hide();
+            } else {
+                $('#firstComment').show();
+            }
+        }; // end comment check method
+
         $scope.newComment = {rating: 0, name: '', title: '', body: '', score: 0};
 
         // add comment method
@@ -42,6 +54,7 @@ angular.module('ReviewApp', ['ui.bootstrap'])
                     $scope.newComment.objectId = responseData.objectId;
                     $scope.comments.push($scope.newComment);
                     $scope.newComment = {rating: 1, name: '', title: '', body: '', score: 0};
+                    $scope.commentCheck();
                 })
                 .error(function(err) {
                     $scope.errorMessage = err;
@@ -65,6 +78,7 @@ angular.module('ReviewApp', ['ui.bootstrap'])
                     } else {
                         comment.score = responseData.score;
                     }
+                    $scope.commentCheck();
                 })
                 .error(function(err) {
                     $scope.errorMessage = err;
@@ -73,7 +87,6 @@ angular.module('ReviewApp', ['ui.bootstrap'])
                     $scope.loading = false;
                 });
         }; // end increment score method
-
 
         // delete comment method which will delete the information
         $scope.deleteComment = function(comment) {

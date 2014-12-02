@@ -58,3 +58,7 @@ h2 {
 .glyphicon-remove:hover {
     background-color: darkgray;
 }
+
+.no-comments {
+    display: visible;
+}
